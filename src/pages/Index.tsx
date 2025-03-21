@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
@@ -89,11 +88,15 @@ const Index = () => {
                 animate={loaded ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6 }}
               >
-                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-docease-600 to-docease-400 bg-clip-text text-transparent">
+                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-2 bg-gradient-to-r from-docease-600 to-docease-400 bg-clip-text text-transparent">
                   Healthcare Made Simple
                 </h1>
+                <span className="text-lg md:text-2xl font-medium text-gray-700 hidden sm:inline block mb-4">
+                  Because Every Second Counts
+                </span>
+                <br /><br />
                 <p className="text-lg text-gray-600 mb-8 md:text-xl max-w-2xl mx-auto">
-                  DocEase connects you with healthcare services, doctors, and emergency care—all in one place.
+                  Connecting you with healthcare services, doctors and emergency care <br />all in one place.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <Button asChild size="lg" className="bg-docease-600 hover:bg-docease-700">
@@ -304,12 +307,12 @@ const Index = () => {
                 Join thousands of users who trust DocEase for their healthcare needs.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button asChild size="lg" variant="default" className="bg-white text-docease-600 hover:bg-gray-100">
+                <Button asChild size="lg" variant="outline" className="border-white text-docease-600 hover:bg-white/10">
                   <Link to="/signin">
                     Create Free Account
                   </Link>
                 </Button>
-                <Button asChild size="lg" variant="outline" className="border-white text-white hover:bg-white/10">
+                <Button asChild size="lg" variant="outline" className="border-white text-docease-600 hover:bg-white/10">
                   <Link to="/doctors">
                     Find Doctors
                   </Link>

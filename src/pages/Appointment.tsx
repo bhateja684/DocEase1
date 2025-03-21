@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { format } from "date-fns";
 import { Calendar as CalendarIcon, Check, X } from "lucide-react";
@@ -77,7 +76,31 @@ const formSchema = z.object({
   }).max(500, {
     message: "Reason cannot be more than 500 characters.",
   }),
+  appointmentType: z.string({
+    required_error: "Please select an appointment type.",
+  }),
+  houseAddress: z.string().optional().refine((val, ctx) => {
+    if (ctx.parent.appointmentType === "personal" && !val) {
+      return false;
+    }
+    return true;
+  }, {
+    message: "House address is required for Personal Appointment.",
+  }),
+  personalPhone: z.string().optional().refine((val, ctx) => {
+    if (ctx.parent.appointmentType === "personal" && !val) {
+      return false;
+    }
+    return true;
+  }, {
+    message: "Phone number is required for Personal Appointment.",
+  }),
 });
+
+const appointmentTypes = [
+  { value: "personal", label: "Personal Appointment" },
+  { value: "clinic", label: "Clinic Appointment" },
+];
 
 const Appointment = () => {
   const { isAuthenticated, user } = useAuth();
@@ -93,6 +116,7 @@ const Appointment = () => {
       date: undefined,
       time: "",
       reason: "",
+      appointmentType: "",
     },
   });
 
@@ -288,6 +312,62 @@ const Appointment = () => {
                           </FormItem>
                         )}
                       />
+                      <FormField
+                        control={form.control}
+                        name="appointmentType"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>Appointment Type</FormLabel>
+                            <FormControl>
+                              <div className="flex space-x-4">
+                                {appointmentTypes.map((type) => (
+                                  <label key={type.value} className="flex items-center space-x-2">
+                                    <input
+                                      type="radio"
+                                      value={type.value}
+                                      checked={field.value === type.value}
+                                      onChange={field.onChange}
+                                      className="form-radio"
+                                    />
+                                    <span>{type.label}</span>
+                                  </label>
+                                ))}
+                              </div>
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                      {form.watch("appointmentType") === "personal" && (
+                        <>
+                          <FormField
+                            control={form.control}
+                            name="houseAddress"
+                            render={({ field }) => (
+                              <FormItem>
+                                <FormLabel>House Address</FormLabel>
+                                <FormControl>
+                                  <Input placeholder="Enter your house address" {...field} />
+                                </FormControl>
+                                <FormMessage />
+                              </FormItem>
+                            )}
+                          />
+                          <FormField
+                            control={form.control}
+                            name="personalPhone"
+                            render={({ field }) => (
+                              <FormItem>
+                                <FormLabel>Phone Number</FormLabel>
+                                <FormControl>
+                                  <Input placeholder="Enter your phone number" {...field} />
+                                </FormControl>
+                                <FormMessage />
+                              </FormItem>
+                            )}
+                          />
+                        </>
+                      )}
                     </div>
                     
                     <FormField

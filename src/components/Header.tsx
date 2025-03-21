@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { 
@@ -54,7 +53,6 @@ const Header = () => {
     { path: "/", icon: <Home className="w-5 h-5" />, label: "Home" },
     { path: "/appointment", icon: <Calendar className="w-5 h-5" />, label: "Appointments" },
     { path: "/doctors", icon: <MapPin className="w-5 h-5" />, label: "Find Doctors" },
-    { path: "/home-visit", icon: <HelpCircle className="w-5 h-5" />, label: "Home Visit" },
     { path: "/report-analysis", icon: <FileText className="w-5 h-5" />, label: "Medical Reports" },
     { path: "/insurance", icon: <Shield className="w-5 h-5" />, label: "Insurance" },
     { path: "/health-tips", icon: <Heart className="w-5 h-5" />, label: "Health Tips" },
@@ -75,7 +73,7 @@ const Header = () => {
             <span className="text-2xl font-bold bg-gradient-to-r from-docease-600 to-docease-400 bg-clip-text text-transparent">
               DocEase
             </span>
-            <span className="text-xs font-light text-gray-600 hidden sm:inline">Because Every Second Counts</span>
+            {/* <span className="text-xs font-light text-gray-600 hidden sm:inline">Because Every Second Counts</span> */}
           </Link>
 
           {/* Desktop Navigation - Icons Only with Hover Labels */}

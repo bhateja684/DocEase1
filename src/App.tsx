@@ -6,7 +6,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "./components/AuthContext";
 import { motion, AnimatePresence } from "framer-motion";
-
+//xwmchmvwhxwc
 // Pages
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";

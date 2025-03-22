@@ -157,26 +157,17 @@ import requests
 DEEPSEEK_API_KEY = os.getenv("DEEPSEEK_API_KEY")
 DEEPSEEK_API_URL = "https://api.deepseek.com/analyze"
 
-def analyze_report(text):
-    try:
-        # Groq API Call
-        groq_response = requests.post(
-            "https://api.groq.com/analyze",
-            headers={"Authorization": f"Bearer {GROQ_API_KEY}"},
-            json={"text": text}
-        ).json()
 
-        # DeepSeek API Call
-        deepseek_response = requests.post(
-            "https://api.deepseek.com/analyze",
-            headers={"Authorization": f"Bearer {DEEPSEEK_API_KEY}"},
-            json={"text": text}
-        ).json()
+def analyze_with_deepseek(text):
+    print(f"🔍 Sending request to DeepSeek API: {text}")  # Debugging print
+    response = requests.post("https://api.deepseek.com/analyze", json={"text": text})
+    print(f"🛑 Response Status: {response.status_code}")  # Debugging print
+    print(f"🛑 Response Text: {response.text}")
+    """Analyze text using DeepSeek API"""
+    headers = {"Authorization": f"Bearer {DEEPSEEK_API_KEY}", "Content-Type": "application/json"}
+    data = {"text": text}
 
-        return {
-            "groq_analysis": groq_response.get("analysis", "Groq Analysis Failed"),
-            "deepseek_analysis": deepseek_response.get("analysis", "DeepSeek Analysis Failed")
-        }
-
-    except Exception as e:
-        return {"error": str(e)}
+    response = requests.post(DEEPSEEK_API_URL, json=data, headers=headers)
+    if response.status_code == 200:
+        return response.json()
+    return {"error": "Failed to get analysis from DeepSeek API"}

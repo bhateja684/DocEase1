@@ -71,8 +71,11 @@ from flask_cors import CORS
 import os
 import pytesseract
 from pdf2image import convert_from_path
-from pages.ReportAnalysis.frontend.backend.api import analyze_with_groq
-from pages.ReportAnalysis.frontend.backend.model import analyze_with_deepseek
+# from pages.ReportAnalysis.frontend.backend.api import analyze_with_groq
+from api import analyze_with_groq
+
+from model import analyze_with_deepseek
+
 from dotenv import load_dotenv
 pytesseract.pytesseract.tesseract_cmd = os.getenv("TESSERACT_PATH")
 pytesseract.pytesseract.tesseract_cmd = r"C:/Program Files/Tesseract-OCR/tesseract.exe"

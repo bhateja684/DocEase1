@@ -15,7 +15,9 @@ import Appointment from "./pages/Appointment";
 import DoctorLocator from "./pages/DoctorLocator";
 import Chatbot from "./pages/Chatbot";
 import HealthProfile from "./pages/HealthProfile";
-import ReportAnalysis from "./pages/ReportAnalysis";
+import ReportAnalysis from "./pages/ReportAnalysis/frontend/ReportAnalysis1";
+
+
 import HomeVisit from "./pages/HomeVisit";
 import Insurance from "./pages/Insurance";
 import HealthTips from "./pages/HealthTips";
